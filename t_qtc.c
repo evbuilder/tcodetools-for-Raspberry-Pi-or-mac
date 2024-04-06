@@ -517,8 +517,9 @@ int main(int argc, char *argv[]) {
 			offset = 0;
 			while (offset <= DataLen-Window) {
 				Complexity = ftdSelAugment(&Dynamics[offset], Window);
-
-				if ((Comp == FALSE) && (Info == FALSE) && (Entropy == FALSE) ) printf("%.2f %.2f %.5f\n", Complexity, Scale*Information, Scale*(Information=invlogint(Complexity))/Window/reference);
+        float lastInformation = Information;
+				if ((Comp == FALSE) && (Info == FALSE) && (Entropy == FALSE) )
+          printf("%.2f %.2f %.5f\n", Complexity, Scale*lastInformation, Scale*(Information=invlogint(Complexity))/Window/reference);
 				else if (Comp == TRUE) printf("%.2f ", Complexity );
 				else if (Info == TRUE) printf("%.2f ", Scale*invlogint(Complexity) );
 				else if (Entropy == TRUE) printf("%.5f ", Scale*invlogint(Complexity)/Window/reference );

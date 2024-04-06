@@ -524,7 +524,7 @@ int main(int argc, char *argv[]) {
 
 
 
-	Input = (float *) malloc(DataLen * sizeof(int));
+	Input = (float *) malloc(DataLen * sizeof(float));
 	Data = (int *) malloc(DataLen * sizeof(int));
 
 	avg = 0.0;
@@ -560,7 +560,10 @@ int main(int argc, char *argv[]) {
 
 		float floatrange;
 		if (width) { floatrange = max-min; max = avg+floatrange*width; min = avg - floatrange*width; }
-		for (i = 0; i < DataLen; i++) Data[i++] = (int) (( (Input[i] - min) * Range)/(max-min) - Startoffset) ;
+		for (i = 0; i < DataLen; i++)
+    {
+      Data[i] = (int) (( (Input[i] - min) * Range)/(max-min) - Startoffset) ;
+    }
 		free(Input);
 
 
